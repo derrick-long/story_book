@@ -1,0 +1,22 @@
+{
+  "name": "story_books",
+  "version": "1.0.0",
+  "description": "A javascript application for sharing and writing stories",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derrick-long/story_book.git"
+  },
+  "author": "Derrick Long",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derrick-long/story_book/issues"
+  },
+  "homepage": "https://github.com/derrick-long/story_book#readme",
+  "dependencies": {
+    "npm": "^5.7.1"
+  }
+}
