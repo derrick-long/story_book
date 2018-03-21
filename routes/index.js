@@ -5,7 +5,7 @@ const passport = require('passport');
 
 
 router.get('/', (req, res)=> {
-  res.send('up and running!');
+  res.render('index/welcome');
 });
 
 router.get('/dashboard', (req,res) => {
