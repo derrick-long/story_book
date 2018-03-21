@@ -2,12 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const app = express();
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
 
 const port = process.env.PORT || 5000;
 
 // load user model
 require('./models/user');
-
 
 //passport config
 
@@ -29,6 +30,24 @@ mongoose.connect(keys.mongoURI,{
   .catch(err=> console.log(err));
 
 
+// cookie parser
+app.use(cookieParser());
+
+//session
+
+
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+}));
+
+
+//passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 
 app.get('/', (req, res)=> {
   res.send('up and running!');
@@ -36,7 +55,6 @@ app.get('/', (req, res)=> {
 //routes
 
 app.use('/auth', auth);
-
 
 
 
