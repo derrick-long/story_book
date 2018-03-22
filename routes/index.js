@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
+const {ensureAuthenticated} = require('../helpers/auth');
+const {ensureGuest} = require('../helpers/auth');
 
 
-
-router.get('/', (req, res)=> {
+router.get('/', ensureGuest, (req, res)=> {
   res.render('index/welcome');
 });
 
-router.get('/dashboard', (req,res) => {
+router.get('/dashboard', ensureAuthenticated, (req,res) => {
   res.render('index/dashboard');
 });
 
