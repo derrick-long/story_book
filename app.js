@@ -17,7 +17,7 @@ require('./config/passport')(passport);
 //load routes
 const index = require('./routes/index');
 const auth = require('./routes/auth');
-
+const stories = require('./routes/stories');
 //load keys
 const keys = require('./config/keys');
 //mongoose connect
@@ -64,6 +64,7 @@ app.use((req, res, next)=> {
 //routes
 app.use('/', index);
 app.use('/auth', auth);
+app.use('/stories', stories);
 
 
 
