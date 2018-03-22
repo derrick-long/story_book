@@ -7,8 +7,15 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const port = process.env.PORT || 5000;
 const path = require('path');
-// load user model
+const bodyParser = require('body-parser');
+
+
+
+
+// load  models
 require('./models/user');
+require('./models/story');
+
 
 //passport config
 
@@ -18,8 +25,14 @@ require('./config/passport')(passport);
 const index = require('./routes/index');
 const auth = require('./routes/auth');
 const stories = require('./routes/stories');
+
 //load keys
 const keys = require('./config/keys');
+
+//body parser middle
+app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.json());
+
 //mongoose connect
 mongoose.Promise = global.Promise;
 
