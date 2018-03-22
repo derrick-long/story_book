@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const port = process.env.PORT || 5000;
-
+const path = require('path');
 // load user model
 require('./models/user');
 
@@ -59,6 +59,8 @@ app.use((req, res, next)=> {
   next();
 });
 
+// set static folder
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 //routes
