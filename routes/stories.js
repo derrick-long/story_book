@@ -8,6 +8,7 @@ const User = mongoose.model('users');
 //stories index
 router.get('/', (req,res)=> {
   Story.find({status:'Public'})
+    .populate('user')
     .then(stories =>{
       res.render('stories/index',{
         stories: stories
