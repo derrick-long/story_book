@@ -37,6 +37,19 @@ router.get('/add', ensureAuthenticated, (req,res)=> {
   res.render('stories/add');
 });
 
+//edit story form
+
+router.get('/edit/:id', ensureAuthenticated, (req,res)=> {
+  Story.findOne({
+    _id: req.params.id
+  })
+  .then(story => {
+    res.render('stories/edit', {
+    story: story
+  });
+  });
+});
+
 
 //make story hit DB
 
