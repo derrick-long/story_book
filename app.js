@@ -29,6 +29,13 @@ const stories = require('./routes/stories');
 //load keys
 const keys = require('./config/keys');
 
+//handlebars helpers
+const {
+  truncate,
+  stripTags
+} = require('./helpers/hbs');
+
+
 //body parser middle
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
@@ -45,6 +52,10 @@ mongoose.connect(keys.mongoURI,{
 //handlebars
 
 app.engine('handlebars', exphbs({
+  helpers: {
+    truncate: truncate,
+    stripTags: stripTags
+  },
   defaultLayout: 'main',
 }));
 
