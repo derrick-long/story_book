@@ -5,6 +5,7 @@ const {ensureAuthenticated} = require('../helpers/auth');
 const mongoose = require('mongoose');
 const Story = mongoose.model('stories');
 const User = mongoose.model('users');
+
 //stories index
 router.get('/', (req,res)=> {
   Story.find({status:'Public'})
@@ -14,6 +15,20 @@ router.get('/', (req,res)=> {
         stories: stories
       });
     });
+});
+
+//show single story
+
+router.get('/show/:id', (req,res)=> {
+  Story.findOne({
+    _id: req.params.id
+  })
+  .populate('user')
+  .then(story => {
+    res.render('stories/show', {
+    story: story
+  });
+  });
 });
 
 //add story form
@@ -51,5 +66,7 @@ router.post('/', (req, res)=> {
   });
 
 });
+
+
 
 module.exports = router;
