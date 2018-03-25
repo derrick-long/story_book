@@ -8,6 +8,7 @@ const exphbs = require('express-handlebars');
 const port = process.env.PORT || 5000;
 const path = require('path');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 
 
@@ -80,6 +81,10 @@ app.use(session({
 //passport middleware
 app.use(passport.initialize());
 app.use(passport.session());
+
+//method override middleware
+app.use(methodOverride('_method'));
+
 
 //global vars
 app.use((req, res, next)=> {
